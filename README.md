@@ -1,4 +1,4 @@
-# LAB1
+# LAB T. Micro
 Laboratorio 1 Tecnologia Microprocesamientos
 
 #Cosas por hacer
