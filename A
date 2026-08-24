@@ -1,0 +1,34 @@
+; Por razones de comodidad, uno de los partisipantes utiliza otro softwere para implementar la programacion
+.include "m328Pdef.inc"
+                              ;Planifique una estructura general, ahora tengo que implementarlo en codigo
+.org 0x0000
+   rjmp RESET
+
+RESET:
+   ;Entradas y salidas
+
+Luces: ;Menu general
+
+Ligera: ;Cargas
+
+Media:
+
+Pesada:
+
+Esperar soltar: ;Es para evitar que se cambie mil vezes cada que lo precionas
+
+Esperar precionar:
+
+More1:
+
+Lavado:
+
+Centrifugado:
+
+Secado:
+
+Floot:
+
+DELAY_1S:
+
+L1
