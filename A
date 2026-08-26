@@ -101,6 +101,37 @@ cbi PORTB, PB2
 rjmp Secado
 
 Secado:
+ldi r21,4 ;5 Segundos Gira
+add r21, r17
+add r21, r17
+ldi r22, 0
+add r22, r17
+
+G4:
+sbi PORTB, PB3 ;gira
+rcall DELAY_1S
+dec r21               ;Izquierda
+brne G4
+
+ldi r21, 3 ;3Segundos Gira 
+add r21, r17                ;info
+add r21, r17
+
+G5:
+cbi PORTB, PB3
+rcall DELAY_1S
+dec r21 ;Pausa 1 segundo ;Stop
+brne G5
+
+ldi r21, 5 ;5segundos gira
+add r21, r17
+add r21, r17
+
+G6:
+sbi PORTB, PB3
+rcall DELAY_1S              ;Der
+brne G6
+cbi PORTB, PB3
 
 Floot:
 
