@@ -1,4 +1,5 @@
 ; Por razones de comodidad, uno de los partisipantes utiliza otro softwere para implementar la programacion
+
 .include "m328Pdef.inc"
                               ;Planifique una estructura general, ahora tengo que implementarlo en codigo
 .org 0x0000
@@ -6,6 +7,14 @@
 
 RESET:
    ;Entradas y salidas
+ldi r16, (1<<PB0) | (1<<PB1) | (1<<PB2) | (1<<PB3) | (1<<PB4)
+out DDRB, r16
+
+cbi DDRD, 2
+sbi PORTD, 3
+
+clr r17
+rjmp XXXX
 
 Luces: ;Menu general
 
