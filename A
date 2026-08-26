@@ -14,19 +14,48 @@ cbi DDRD, 2
 sbi PORTD, 3
 
 clr r17
-rjmp XXXX
+rjmp ESPERAR_Soltar
 
-Luces: ;Menu general
+Luces:  ;Evaluca que luz encender
 
-Ligera: ;Cargas
+   cbi PORTB, PB2
+   cbi PORTB, PB3
+   cbi PORTB, PB4
+
+   cbi r17, 0
+   breq Ligera ;Ligera
+
+   cbi r17, 1 
+   breq, Media
+
+   cbi r17, 2
+   breq Pesada
+
+Ligera:
+   sbi PORTB, PB2
+   ret
 
 Media:
+   sbi PORTB, PB3
+   ret
 
 Pesada:
+   sbi PORTB, PB4
+   ret
 
-Esperar soltar: ;Es para evitar que se cambie mil vezes cada que lo precionas
+Esperar_Soltar:
+   rcall Luces
+   ESPERAR_SOLO:
+   sbi PORTB, PB0
+   sbis PIND, 2
+   rjmp ESPERAR_SOLO
 
-Esperar precionar:
+ESPERAR_RESIONAR:
+sbis PIND, 3
+rjmp Lavado      ;Empiesa el proceso prinsipal
+sbis PIND, 2
+rjmp More1       ;n+1
+rjmp ESPERAR_PRESIONAR
 
 More1:
 
