@@ -51,17 +51,54 @@ Esperar_Soltar:
    rjmp ESPERAR_SOLO
 
 ESPERAR_RESIONAR:
-sbis PIND, 3
-rjmp Lavado      ;Empiesa el proceso prinsipal
-sbis PIND, 2
-rjmp More1       ;n+1
-rjmp ESPERAR_PRESIONAR
+   sbis PIND, 3
+   rjmp Lavado      ;Empiesa el proceso prinsipal
+   sbis PIND, 2
+   rjmp More1       ;n+1
+   rjmp ESPERAR_PRESIONAR
 
 More1:
+   inc r17
+   cpi r17, 3
+   brne ESPERAR_SOLTAR
+   cl r17
+   rjmp ESPERAR_SOLTAR
 
 Lavado:
+   cbi PORTB, PB2
+   cbi PORTB, PB3
+   cbi PORTB, PB4
+
+cbi PORTB, PB0
+   ldi r21, r17
+   ldi r22, 5
+   G1:
+sbi PORTB, PB1
+rcall DELAY_1S
+dec r21
+brne G1
+
+cbi PORTB, PB1
+ldi r21, 1       ;Pausa 1 segundo
+add r21, r17
+dec r22
+brne G1
+cbi PORTB, PB1
+rjmp Centrifugado 
 
 Centrifugado:
+ldi r21, 15  ;15 Segundos gira
+ldi r22, 1 
+add r22, r17
+add r22, r17 ;3 vucles
+add r22, r17
+G3:
+sbi PORTB, PB2
+rcall DELAY_1S
+dec r22
+brne G3
+cbi PORTB, PB2
+rjmp Secado
 
 Secado:
 
